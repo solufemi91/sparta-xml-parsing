@@ -17,18 +17,15 @@ class GuiseppesMenu
     price_array
   end
 
-  def get_all_calorie_tags
-     #get all the calorie tags, except the one that has a name sibling of breakfast
-    #how do i select a tag that has a specific sibling
+  def get_all_calorie_except_for_breakfast
+     
     calories_array = []
-    @menu.xpath('//calories').each do |calories|
+    # @menu.xpath('//calories')
+    @menu.xpath("//calories[not(.='1200')]").each do |calories|
       calories_array << calories.text.to_i
     end
 
     calories_array
-
-    # @menu.xpath("/breakfast_menu/food[not(name='Full Breakfast')]")
-
 
   end
 
@@ -41,7 +38,7 @@ class GuiseppesMenu
 end
 
 x = GuiseppesMenu.new
-puts x.get_all_calorie_tags
+puts x.get_all_calorie_except_for_breakfast
 # puts x.get_all_foods_except_breakfast
 #
 # class GuiseppesMenu
