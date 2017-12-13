@@ -18,7 +18,7 @@ class GuiseppesMenu
   end
 
   def get_all_calorie_except_for_breakfast
-     
+
     calories_array = []
     # @menu.xpath('//calories')
     @menu.xpath("//calories[not(.='1200')]").each do |calories|
@@ -30,6 +30,16 @@ class GuiseppesMenu
   end
 
 
+  #go through each food tag and check the description of each description tag
+  def get_description_elements_for_waffles
+    description_array = []
+    @menu.xpath("//description[contains(text(),'waffles')]").each do |description|
+      description_array.push(description.text)
+
+    end
+    description_array
+  end
+
 
 
 
@@ -37,34 +47,5 @@ class GuiseppesMenu
 
 end
 
-x = GuiseppesMenu.new
-puts x.get_all_calorie_except_for_breakfast
-# puts x.get_all_foods_except_breakfast
-#
-# class GuiseppesMenu
-#   attr_accessor :menu
-#
-#   def initialize
-#     @menu = Nokogiri::XML(File.open('./xml_menu.xml'))
-#   end
-#
-#   def get_menu_names
-#     @menu.search('name')
-#   end
-#
-#   def xpath_get_names
-#     @menu.xpath('//calories')
-#   end
-#
-#   def xpath_get_nameOfFoods
-#     @menu.xpath('//name')
-#   end
-#
-#   def xpath_get_nameOfFoodsNoTags
-#     @menu.xpath('//name').text
-#   end
-#
-#
-#
-#
-# end
+# x = GuiseppesMenu.new
+# puts x.get_description_elements_for_waffles
